@@ -211,7 +211,7 @@ abort() {
 do_devicecheck() {
   test "$(file_getprop anykernel.sh do.devicecheck)" == 1 || return 1;
   local device devicename match product testname vendordevice vendorproduct;
-  ui_print "Checking device...";
+  ui_print " " "Checking device...";
   device=$(getprop ro.product.device 2>/dev/null);
   product=$(getprop ro.build.product 2>/dev/null);
   vendordevice=$(getprop ro.product.vendor.device 2>/dev/null);
@@ -412,7 +412,7 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print " " "AnyKernel3 by osm0sis @ xda-developers" " " " ";
+ui_print " " "AnyKernel3 by osm0sis @ xda-developers";
 
 setup_env;
 
@@ -437,4 +437,4 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
   cleanup;
 fi;
 
-ui_print " " " " "Done!";
+ui_print " " "Done!";
