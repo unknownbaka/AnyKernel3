@@ -13,25 +13,34 @@ _A script based on Galaxy Nexus (tuna) is included for reference. Everything to 
 ```
 kernel.string=KernelName by YourName @ xda-developers
 do.devicecheck=1
+do.refresh_rate=
+do.cpu_offset=
+do.dts_backup=
 do.modules=1
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=maguro
-device.name2=toro
-device.name3=toroplus
-device.name4=tuna
-supported.versions=6.0 - 7.1.2
+device.name1=mido
+device.name2=
+device.name3=
+device.name4=
+supported.versions=9-10
 supported.patchlevels=2019-07 -
 
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=dev/block/bootdevice/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 ```
 
 __do.devicecheck=1__ specified requires at least device.name1 to be present. This should match ro.product.device, ro.build.product, ro.product.vendor.device or ro.vendor.product.device from the build.prop files for your device. There is support for as many device.name# properties as needed. You may remove any empty ones that aren't being used.
 
-__do.modules=1__ will push the .ko contents of the modules directory to the same location relative to root (/) and apply correct permissions. On A/B devices this can only be done to the active slot.
+__do.modules=__ will push the .ko contents of the modules directory to the same location relative to root (/) and apply correct permissions. On A/B devices this can only be done to the active slot.
+
+__do.refresh_rate=__ will modify screen refresh rate to this, unit hz.
+
+__do.cpu_offset=__ will cpu overvolt to this, unit mv. enter a negative number is cpu undervolt.
+
+__do.dts_backup=__ backup dts to /sdcard/Android/backup.dts.
 
 __do.systemless=1__ (with __do.modules=1__) will instead push the full contents of the modules directory to create a simple "ak3-helper" Magisk module, allowing developers to effectively replace system files, including .ko files. If the current kernel is changed then the kernel helper module automatically removes itself to prevent conflicts.
 
