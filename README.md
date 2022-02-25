@@ -13,6 +13,8 @@ _A script based on Galaxy Nexus (tuna) is included for reference. Everything to 
 ```
 kernel.string=KernelName for DeviceName
 do.devicecheck=1
+do.refresh_rate=60
+do.dts_backup=0
 do.modules=1
 do.systemless=1
 do.cleanup=1
@@ -32,6 +34,9 @@ ramdisk_compression=auto;
 __do.devicecheck=1__ specified requires at least device.name1 to be present. This should match ro.product.device, ro.build.product, ro.product.vendor.device or ro.vendor.product.device from the build.prop files for your device. There is support for as many device.name# properties as needed. You may remove any empty ones that aren't being used.
 
 __do.modules=1__ will push the .ko contents of the modules directory to the same location relative to root (/) and apply correct permissions. On A/B devices this can only be done to the active slot.
+__do.refresh_rate=60__ will modify screen refresh rate to this, unit hz.
+
+__do.dts_backup=0__ will copy dts to /sdcard/Android/backup.dts.
 
 __do.systemless=1__ (with __do.modules=1__) will instead push the full contents of the modules directory to create a simple "ak3-helper" Magisk module, allowing developers to effectively replace system files, including .ko files. If the current kernel is changed then the kernel helper module automatically removes itself to prevent conflicts.
 

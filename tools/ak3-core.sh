@@ -359,6 +359,10 @@ flash_boot() {
       1) export PATCHVBMETAFLAG=true;;
       *) export PATCHVBMETAFLAG=false;;
     esac;
+    if [ $(file_getprop $home/anykernel.sh do.refresh_rate) != 0 ] ||
+        [ $(file_getprop $home/anykernel.sh do.dtb_backup) != 0 ]; then
+        . $bin/dtb_process.sh;
+    fi
     $bin/magiskboot repack $nocompflag $bootimg $home/boot-new.img;
     unset PATCHVBMETAFLAG;
   fi;
