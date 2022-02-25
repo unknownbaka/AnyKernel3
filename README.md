@@ -11,7 +11,7 @@ _A script based on Galaxy Nexus (tuna) is included for reference. Everything to 
 
 ## // Properties / Variables ##
 ```
-kernel.string=KernelName by YourName @ xda-developers
+kernel.string=KernelName for DeviceName
 do.devicecheck=1
 do.modules=1
 do.systemless=1
@@ -24,7 +24,7 @@ device.name4=tuna
 supported.versions=6.0 - 7.1.2
 supported.patchlevels=2019-07 -
 
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=dev/block/bootdevice/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 ```
