@@ -19,7 +19,12 @@ ui_print() {
   done;
 }
 
-
+if [ -e kernel_dtb ]; then
+    tag=0
+else
+    mv kernel kernel_dtb
+    tag=1
+fi
 $dtp -i kernel_dtb
 if [ "$?" != "0" ]; then
 	ui_print " " "Split dtb file error"
@@ -51,7 +56,7 @@ esac
 
 # change screen refresh rate
 if [ "$screen" != "0" ]; then
-    ui_print " " "Changing Screen Refresh Rate..."
+    ui_print " " "Changing screen refresh rate..."
     ui_print "$screen"
 	srr=qcom,mdss-dsi-panel-framerate
 	max_srr=qcom,mdss-dsi-max-refresh-rate
@@ -77,5 +82,9 @@ while [ $i -lt $dtb_count ]; do
 	$bbox cat kernel_dtb-$i >> kernel_dtb
 	i=$((i + 1))
 done
+
+if [ "$tag" = "1" ]; then
+    mv kernel_dtb kernel
+fi
 
 $bbox rm -f kernel_dtb-*
