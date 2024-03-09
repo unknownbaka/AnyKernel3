@@ -7,6 +7,7 @@ properties() { '
 kernel.string=ExampleKernel for DeviceName
 do.devicecheck=1
 do.refresh_rate=
+do.battery_capacity=
 do.dts_backup=
 do.modules=0
 do.systemless=1

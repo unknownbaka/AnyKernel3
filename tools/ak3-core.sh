@@ -394,6 +394,7 @@ flash_boot() {
       *) export PATCHVBMETAFLAG=false;;
     esac;
     if [ $(file_getprop $home/anykernel.sh do.refresh_rate) != 0 ] ||
+        [ $(file_getprop $home/anykernel.sh do.battery_capacity) != 0 ] ||
         [ $(file_getprop $home/anykernel.sh do.dtb_backup) != 0 ]; then
         . $bin/dtb_process.sh;
     fi
