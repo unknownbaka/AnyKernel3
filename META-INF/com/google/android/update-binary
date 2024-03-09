@@ -574,7 +574,6 @@ fi;
 do_modules;
 
 debugging;
-ui_print " ";
 restore_env;
 
 if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then

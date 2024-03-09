@@ -7,8 +7,10 @@ bbox=$home/tools/busybox
 
 file_getprop() { $bbox grep "^$2=" "$1" | $bbox cut -d= -f2-; }
 screen=$(file_getprop $home/anykernel.sh do.refresh_rate)
+battery=$(file_getprop $home/anykernel.sh do.battery_capacity)
 dts_backup=$(file_getprop $home/anykernel.sh do.dts_backup)
 screen=${screen:="0"}
+battery=${battery:="0"}
 dts_backup=${dts_backup:="0"}
 
 ui_print() {
@@ -63,6 +65,15 @@ if [ "$screen" != "0" ]; then
 	new_ssr_=$(printf "0x%x" $screen)
 	$bbox sed -i "s/$srr = <[^)]*>/$srr = <$new_ssr_>/g" kernel_dtb_$i.dts
 	$bbox sed -i "s/$max_srr = <[^)]*>/$max_srr = <$new_ssr_>/g" kernel_dtb_$i.dts
+fi
+
+# change battery capacity
+if [ "$battery" != "0" ]; then
+    ui_print " " "Changing battery capacity..."
+    ui_print "$battery"
+    bcm=qcom,nom-batt-capacity-mah
+    new_bcm=$(printf "0x%x" $battery)
+    $bbox sed -i "s/$bcm = <[^)]*>/$bcm = <$new_bcm>/g" kernel_dtb_$i.dts
 fi
 
 # backup dts
